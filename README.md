@@ -1,2 +1,2 @@
 # Document-Menagment-System
-Building a RESTful Web Service for storing and reading documents using Spring
+Building a RESTful web-service for: Creating, Reading, Updating and Deleting documents, using Spring and Hibernate
