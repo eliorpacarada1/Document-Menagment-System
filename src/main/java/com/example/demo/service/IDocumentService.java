@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
-public interface IDocumentService {
+import com.example.demo.model.Document;
 
+import java.util.List;
+
+public interface IDocumentService {
 
 }
