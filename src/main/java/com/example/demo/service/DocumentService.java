@@ -4,10 +4,8 @@ import com.example.demo.model.Document;
 import com.example.demo.repository.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.print.Doc;
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class DocumentService implements IDocumentService {
 
@@ -26,18 +24,29 @@ public class DocumentService implements IDocumentService {
     public List<Document> getAllDocuments(){
         return repository.findAll();
     }
-    public String deleteDocumentById(int id){
-        repository.deleteById(id);
-        return "Document has been removed" + ", id: " + id;
-
-    }
 
     public Document getDocumentById(int documentId){
         return repository.findById(documentId).orElse(null);
     }
+
     public Document getDocumentByIDAndDetails(int id, String details){
         Document document = repository.findByDocumentIDAndAndDocumentDetails(id, details);
         return document;
+    }
+
+    public Document updateDocument(Document document){
+        Document existingDocument = repository.findById(document.getID()).orElse(null);
+        existingDocument.setID(document.getID());
+        existingDocument.setDocumentDetails(document.getDocumentName());
+        existingDocument.setDocumentName(document.getDocumentDetails());
+        return repository.save(existingDocument);
+    }
+
+
+    public String deleteDocumentById(int id){
+        repository.deleteById(id);
+        return "Document has been removed" + ", id: " + id;
+
     }
 
 

@@ -4,7 +4,6 @@ package com.example.demo.controller;
 import com.example.demo.model.Document;
 import com.example.demo.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,13 +31,23 @@ public class DocumentController {
     public List <Document> getAllDocuments(){
         return service.getAllDocuments();
     }
+
     @GetMapping("/{documentid}")
     public Document getDocumentByID(@PathVariable int documentid){
         return service.getDocumentById(documentid);
     }
+
     @GetMapping("/id/{documentid}/details/{documentdetails}")
     public Document getDocumentByIdAndDetails(@PathVariable int documentid, @PathVariable String documentdetails){
         return service.getDocumentByIDAndDetails(documentid, documentdetails);
+    }
+    @DeleteMapping("/deleteDocument/{documentid}")
+    public String deleteDocument(@PathVariable int documentid){
+        return service.deleteDocumentById(documentid);
+    }
+    @PutMapping("/updateDocument")
+    public Document updateDocument(@RequestBody Document document){
+        return service.updateDocument(document);
     }
 
 
