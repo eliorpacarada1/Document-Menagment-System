@@ -1,16 +1,17 @@
 package com.example.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Document {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private int DocumentID;
     @Column
     private String DocumentName;
+    @Column
+    private String DocumentDetails;
 
     public Document() {
     }
@@ -44,8 +45,5 @@ public class Document {
     public void setDocumentDetails(String documentDetails) {
         DocumentDetails = documentDetails;
     }
-
-    @Column
-    private String DocumentDetails;
 
 }
